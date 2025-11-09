@@ -1,7 +1,4 @@
-CREATE DATABASE StudentCourseDB;
-USE StudentCourseDB;
-
--- Students Table
+-- TABLE 1 : STUDENTS
 CREATE TABLE Students (
     StudentID INT PRIMARY KEY AUTO_INCREMENT,
     StudentName VARCHAR(100) NOT NULL,
@@ -9,14 +6,14 @@ CREATE TABLE Students (
     Department VARCHAR(50)
 );
 
--- Courses Table
+-- TABLE 2 : COURSES
 CREATE TABLE Courses (
     CourseID INT PRIMARY KEY AUTO_INCREMENT,
     CourseName VARCHAR(100) NOT NULL,
     Credits INT NOT NULL
 );
 
--- Enrollment Table
+-- TABLE 3 : ENROLLMENTS
 CREATE TABLE Enrollments (
     EnrollmentID INT PRIMARY KEY AUTO_INCREMENT,
     StudentID INT,
@@ -26,19 +23,25 @@ CREATE TABLE Enrollments (
     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
 );
 
--- Sample Data
+-- INSERT STUDENTS DATA
 INSERT INTO Students (StudentName, Email, Department) VALUES
 ('Christ Marvyn', 'christmarvyn@example.com', 'BCA'),
 ('Alex John', 'alexjohn@example.com', 'BBA'),
 ('Riya Sharma', 'riya@example.com', 'BCA');
 
+-- INSERT COURSES DATA
 INSERT INTO Courses (CourseName, Credits) VALUES
 ('Data Structures', 4),
 ('Database Systems', 3),
 ('Computer Networks', 3);
 
+-- INSERT ENROLLMENTS DATA
 INSERT INTO Enrollments (StudentID, CourseID, EnrollmentDate) VALUES
 (1,1,'2025-08-01'),
 (1,2,'2025-08-05'),
 (2,3,'2025-08-10'),
 (3,1,'2025-08-02');
+
+SELECT * FROM Students;
+SELECT * FROM Courses;
+SELECT * FROM Enrollments;
