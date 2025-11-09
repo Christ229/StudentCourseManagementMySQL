@@ -1,0 +1,44 @@
+CREATE DATABASE StudentCourseDB;
+USE StudentCourseDB;
+
+-- Students Table
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY AUTO_INCREMENT,
+    StudentName VARCHAR(100) NOT NULL,
+    Email VARCHAR(100),
+    Department VARCHAR(50)
+);
+
+-- Courses Table
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY AUTO_INCREMENT,
+    CourseName VARCHAR(100) NOT NULL,
+    Credits INT NOT NULL
+);
+
+-- Enrollment Table
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY AUTO_INCREMENT,
+    StudentID INT,
+    CourseID INT,
+    EnrollmentDate DATE,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+-- Sample Data
+INSERT INTO Students (StudentName, Email, Department) VALUES
+('Christ Marvyn', 'christmarvyn@example.com', 'BCA'),
+('Alex John', 'alexjohn@example.com', 'BBA'),
+('Riya Sharma', 'riya@example.com', 'BCA');
+
+INSERT INTO Courses (CourseName, Credits) VALUES
+('Data Structures', 4),
+('Database Systems', 3),
+('Computer Networks', 3);
+
+INSERT INTO Enrollments (StudentID, CourseID, EnrollmentDate) VALUES
+(1,1,'2025-08-01'),
+(1,2,'2025-08-05'),
+(2,3,'2025-08-10'),
+(3,1,'2025-08-02');
