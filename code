@@ -1,52 +1,50 @@
--- CREATE DATABASE
 CREATE DATABASE StudentCourseDB;
-
--- SELECT / USE THIS DATABASE
 USE StudentCourseDB;
--- TABLE 1 : STUDENTS
+
+-- STUDENTS TABLE
 CREATE TABLE Students (
-    StudentID INT PRIMARY KEY AUTO_INCREMENT,
+    StudentID CHAR(3) PRIMARY KEY,
     StudentName VARCHAR(100) NOT NULL,
     Email VARCHAR(100),
     Department VARCHAR(50)
 );
 
--- TABLE 2 : COURSES
+-- COURSES TABLE
 CREATE TABLE Courses (
-    CourseID INT PRIMARY KEY AUTO_INCREMENT,
+    CourseID CHAR(8) PRIMARY KEY,
     CourseName VARCHAR(100) NOT NULL,
     Credits INT NOT NULL
 );
 
--- TABLE 3 : ENROLLMENTS
+-- ENROLLMENTS TABLE
 CREATE TABLE Enrollments (
-    EnrollmentID INT PRIMARY KEY AUTO_INCREMENT,
-    StudentID INT,
-    CourseID INT,
+    EnrollmentID CHAR(5) PRIMARY KEY,
+    StudentID CHAR(3),
+    CourseID CHAR(8),
     EnrollmentDate DATE,
     FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
 );
 
--- INSERT STUDENTS DATA
-INSERT INTO Students (StudentName, Email, Department) VALUES
-('Christ Marvyn', 'christmarvyn@example.com', 'BCA'),
-('Alex John', 'alexjohn@example.com', 'BBA'),
-('Riya Sharma', 'riya@example.com', 'BCA');
+-- INSERT STUDENTS
+INSERT INTO Students (StudentID, StudentName, Email, Department) VALUES
+('S01', 'Christ Marvyn', 'christmarvyn@example.com', 'BCA'),
+('S02', 'Alex John', 'alexjohn@example.com', 'BBA'),
+('S03', 'Riya Sharma', 'riya@example.com', 'BCA');
 
--- INSERT COURSES DATA
-INSERT INTO Courses (CourseName, Credits) VALUES
-('Data Structures', 4),
-('Database Systems', 3),
-('Computer Networks', 3);
+-- INSERT COURSES
+INSERT INTO Courses (CourseID, CourseName, Credits) VALUES
+('COURSE01', 'Data Structures', 4),
+('COURSE02', 'Database Systems', 3),
+('COURSE03', 'Computer Networks', 3);
 
--- INSERT ENROLLMENTS DATA
-INSERT INTO Enrollments (StudentID, CourseID, EnrollmentDate) VALUES
-(1,1,'2025-08-01'),
-(1,2,'2025-08-05'),
-(2,3,'2025-08-10'),
-(3,1,'2025-08-02');
+-- INSERT ENROLLMENTS
+INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate) VALUES
+('E0001','S01','COURSE01','2025-08-01'),
+('E0002','S01','COURSE02','2025-08-05'),
+('E0003','S02','COURSE03','2025-08-10'),
+('E0004','S03','COURSE01','2025-08-02');
 
-SELECT * FROM Students;
-SELECT * FROM Courses;
-SELECT * FROM Enrollments;
+-- SELECT * FROM Students;
+-- SELECT * FROM Courses;
+-- SELECT * FROM Enrollments;
